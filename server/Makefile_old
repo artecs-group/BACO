@@ -1,0 +1,73 @@
+#----------------------------------------------------------------------
+PROGRAM=server
+#----------------------------------------------------------------------
+CXX = g++
+CXXFLAGS=-std=c++11
+
+INCS=-Iinclude/ -I../ 
+LIBS=-pthread 
+
+EXTRA = -Wall -Wextra -D$(shell hostname)
+
+DEPS = $(wildcard ../common/*.o)
+#----------------------------------------------------------------------
+OBJ_DIR=obj
+BIN_DIR=bin
+
+SOURCES := $(wildcard src/*.cpp)
+OBJS_SR := $(notdir $(patsubst %.cpp,%.o,$(SOURCES)))
+
+$(info *********************************)
+$(info ************  SERVER ************)
+$(info *********************************)
+
+
+.PHONY: release
+
+release: $(eval OBJS:=$(addprefix $(OBJ_DIR)/, $(OBJS_SR)))\
+	$(OBJS)\
+	$(PROGRAM).x
+
+
+debug: $(eval CXXFLAGS += -ggdb3 -DDEBUG) \
+	$(eval OBJS:=$(addprefix $(OBJ_DIR)/dbg-, $(OBJS_SR)))\
+	$(OBJS)\
+	$(PROGRAM)-d.x
+
+
+
+# instr: CXXFLAGS += -DINSTR
+# instr: INCS += -I$(EXTRAE_INC)
+# instr: LIBS += -L$(EXTRAE_LIB) -lseqtrace
+# instr: TARGET=server-i.x
+# #debug: OBJS := $(patsubst obj/instrumentation%, obj/debug%, $(OBJS))
+# instr: $(TARGET)
+
+
+#.SECONDARY: $(OBJS)
+
+$(OBJ_DIR)/%.o: src/%.cpp
+	$(CXX) $(EXTRA) $(CXXFLAGS) $(INCS) -c $< -o $@
+
+%.x: $(OBJS) $(DEPS) 
+	$(CXX) $(EXTRA) $(CXXFLAGS) $(OBJS) $(DEPS) $(LIBS) -o bin/$@
+
+$(OBJ_DIR)/dbg-%.o: src/%.cpp
+	$(CXX) $(EXTRA) $(CXXFLAGS) $(INCS) -c $< -o $@
+
+# $(OBJ_DIR)/instr-%.o: src/%.cpp
+# 	$(CXX) $(EXTRA) $(CXXFLAGS) $(INCS) -c $< -o $@
+
+
+
+
+
+
+
+.PHONY: clean clean-objs
+clean:
+	-rm -rf obj/*
+	-rm -r bin/server*.x
+
+clean-objs:
+	-rm -rf obj/*

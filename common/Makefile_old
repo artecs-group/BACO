@@ -1,0 +1,33 @@
+#----------------------------------------------------------------------
+
+CXX = g++
+CXXFLAGS=-std=c++11 -fPIC
+
+INCS=-I$(EXTRAE_INC)
+LIBS=-L$(EXTRAE_LIB) -lseqtrace
+
+EXTRA = -Wall -Wextra -D$(shell hostname)
+
+#----------------------------------------------------------------------
+SOURCES := $(wildcard *.cpp)
+OBJS := $(patsubst %.cpp,%.o,$(SOURCES))
+TARGETS=$(OBJS)
+#----------------------------------------------------------------------
+
+$(info *********************************)
+$(info ************  COMMON ************)
+$(info *********************************)
+
+all: $(TARGETS)
+
+debug: CXXFLAGS += -ggdb3 -DDEBUG
+debug: $(TARGETS)
+
+
+%.o: %.cpp
+	$(CXX) $(EXTRA) $(CXXFLAGS) $(INCS) -c $< -o $@ $(LIBS)
+
+.PHONY: clean
+clean:
+	-rm -rf *.o
+

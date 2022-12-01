@@ -1,0 +1,4 @@
+-I../../common
+-I../../client/include
+-L../../client/lib
+-lclient

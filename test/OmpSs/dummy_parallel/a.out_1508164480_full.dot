@@ -1,0 +1,41 @@
+digraph {
+  graph[compound=true];
+  6[style="filled", color="black", fillcolor="lightblue3", width="3.59229", height="3.59229"];
+  6 -> -10 [style="solid", color="black"];
+  7[style="filled", color="black", fillcolor="lightblue3", width="3.2636", height="3.2636"];
+  7 -> -10 [style="solid", color="black"];
+  8[style="filled", color="black", fillcolor="lightblue3", width="2.7006", height="2.7006"];
+  8 -> -10 [style="solid", color="black"];
+  9[style="filled", color="black", fillcolor="lightblue3", width="1.20273", height="1.20273"];
+  9 -> -10 [style="solid", color="black"];
+  10[style="filled", color="black", fillcolor="lightblue3", width="1", height="1"];
+  10 -> -10 [style="solid", color="black"];
+  -10[label="Taskwait", style="bold", width="-inf", height="-inf"];
+  node [shape=plaintext];
+  subgraph cluster_1 {
+    label="User functions:"; style="rounded";
+    funcs_table [label=<<table border="0" cellspacing="10" cellborder="0">
+      <tr>
+        <td bgcolor="lightblue3" width="15px" border="1"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td bgcolor="tomato2" width="15px" border="1"></td>
+        <td>int main(int, char**)@dummy_parallel.c@10@</td>
+      </tr>
+      <tr>
+        <td bgcolor="grey65" width="15px" border="1"></td>
+        <td>void task()@dummy_parallel.c@13@</td>
+      </tr>
+    </table>>]
+  }
+  subgraph cluster_2 {
+    label="Edge types:"; style="rounded";
+    edges_table [label=<<table border="0" cellspacing="10" cellborder="0">
+      <tr>
+        <td width="15px" border="0">&#10141;</td>
+        <td>True dependence | Taskwait | Barrier</td>
+      </tr>
+    </table>>]
+  }
+}

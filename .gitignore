@@ -1,0 +1,30 @@
+#== C/C++ ==
+# Compiled Object files
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.la
+*.a
+
+# Executables
+*.out
+*.x
+
+
+#== Emacs ==
+*~
+\#*\#
+
+# flymake-mode
+*_flymake.*
+
+# AUCTeX auto folder
+/auto/
+
+# Flycheck
+flycheck_*.el

@@ -1,0 +1,4 @@
+-Iinclude
+-I../
+-std=c++14
+

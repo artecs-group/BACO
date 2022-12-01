@@ -1,0 +1,4 @@
+-I/opt/extrae/include/
+-L/opt/extrae/lib/
+-lseqtrace
+-std=c++11

@@ -1,0 +1,4 @@
+-fPIC
+-Iinclude
+-I../
+-std=c++11
