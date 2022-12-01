@@ -20,3 +20,6 @@ Los métodos disponibles para el cliente están en [client/include/client.h](cli
 Aunque la implementación está en C++, la librería resultante se puede enlazar e invocar desde un código en C
 
 
+# Acknowledgements
+
+This work partially supported by the EU (FEDER) and Spanish MINECO (TIN20215-65277-R, RTI2018-093684-B-I00), MICINN (PID2021-126576NB-I00), CM (S2018/TCS-4423), MECD (FPU15/02050), and the Madrid Government (Comunidad de Madrid- Spain) under the Multiannual Agreement with Complutense University in the line Program to Stimulate Research for Young Doctors in the context of the V PRICIT (Regional Programme of Research and Technological Innovation) under project PR65/19-22445.
